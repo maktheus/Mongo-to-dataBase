@@ -6,11 +6,11 @@ from Service.PayloadServices.PayloadParseService import PayloadParseService
 
 
 class payloadParserController:
-    def __init__(self, collections):
-        self.collections = collections
+    def __init__(self, payloadSeparated):
+        self.payloadSeparated = payloadSeparated
 
-    def payloadParser(dataSeparation):
-        payloadParser = PayloadParseService(dataSeparation)
+    def payloadParser(self):
+        payloadParser = PayloadParseService(self.payloadSeparated)
         payloadWise = payloadParser.payloadWiseParser()
         payloadHex = payloadParser.payloadHexParser()
         payloadKS = payloadParser.payloadKSParser()

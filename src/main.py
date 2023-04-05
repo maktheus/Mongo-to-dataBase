@@ -6,7 +6,10 @@ def main():
     databaseController = DatabaseController()
     collections = databaseController.getAllCollections()
 
-    payloadController = MainPayloadController(collections)
+    mainPayloadController = MainPayloadController()
+    treatedPayloadData = mainPayloadController.payloadTreater(collections)
+
+    print(treatedPayloadData)
 
 
 if __name__ == "__main__":

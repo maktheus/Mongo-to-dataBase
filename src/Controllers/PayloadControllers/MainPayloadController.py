@@ -2,22 +2,23 @@ import sys
 
 sys.path.append("src")
 
-from Service.PayloadServices.PayloadParseService import PayloadParseService
-from Service.PayloadServices.PayloadSeparationService import PayloadSeparationService
-from Controllers.DatabaseControllers.DatabaseController import DataBaseController
+from Controllers.PayloadControllers.PayloadParserController import (
+    payloadParserController,
+)
+from Controllers.PayloadControllers.PayloadSeparationController import (
+    payloadSeparationController,
+)
 
 
 class payloadController:
     def __init__(self, collections):
         self.collections = collections
 
-    def payloadSeparation(collection):
-        payloadSeparation = PayloadSeparationService(collection)
-        return payloadSeparation.dataSeparation()
-
-    def payloadParser(dataSeparation):
-        payloadParser = PayloadParseService(dataSeparation)
-        payloadWise = payloadParser.payloadWiseParser()
-        payloadHex = payloadParser.payloadHexParser()
-        payloadKS = payloadParser.payloadKSParser()
+    def payloadTreater(self):
+        payloadSeparated = payloadSeparationController.payloadSeparation(
+            self.collections
+        )
+        payloadWise, payloadHex, payloadKS = payloadParserController.payloadParser(
+            payloadSeparated
+        )
         return payloadWise, payloadHex, payloadKS
