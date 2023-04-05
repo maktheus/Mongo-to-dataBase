@@ -1,14 +1,12 @@
-import sys
-
-print(sys.path)
-
-from Controllers.FileCreationControllers.toH5AndCsv import (
-    DataFromTheDatabaseToCsv,
-)
+from Controllers.DatabaseControllers import DatabaseController
+from Controllers.PayloadControllers import MainPayloadController
 
 
 def main():
-    DataFromTheDatabaseToCsv
+    databaseController = DatabaseController()
+    collections = databaseController.getAllCollections()
+
+    payloadController = MainPayloadController(collections)
 
 
 if __name__ == "__main__":

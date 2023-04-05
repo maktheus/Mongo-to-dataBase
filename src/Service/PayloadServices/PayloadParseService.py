@@ -1,6 +1,7 @@
 import subprocess
 import json
 
+
 class PayloadParseService:
     def __init__(self, payload):
         self.payload = payload

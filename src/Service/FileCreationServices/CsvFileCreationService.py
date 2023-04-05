@@ -6,14 +6,12 @@ class CsvFileCreationService:
     def create_csv_file(self, data):
         with open(self.file_path + self.file_name, "w") as f:
             data.to_csv(f, index=False, header=True)
-    
+
     def create_csv_file_with_header(self, data, header):
         with open(self.file_path + self.file_name, "w") as f:
             data.to_csv(f, index=False, header=header)
 
-    
 
-    
 # def WiseToCsv():
 #     x_matrix, y_matrix, z_matrix = WiseToPandas()
 #     columns = [

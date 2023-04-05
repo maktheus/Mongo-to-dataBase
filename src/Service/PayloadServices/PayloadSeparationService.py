@@ -3,7 +3,7 @@ import sys
 sys.path.append("src")
 
 
-class dataSeparationService:
+class PayloadSeparationService:
     def __init__(self, collection):
         self.collection = collection
 

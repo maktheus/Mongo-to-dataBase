@@ -7,7 +7,7 @@ sys.path.append("src")
 from Service.DatabaseServices.ConnectToDatabaseService import (
     ConnectToMongoDataBase,
 )
-from Service.DatabaseServices.getCollectionsFromDatabasService import DatabaseService
+from Service.DatabaseServices.GetCollectionsFromDatabasService import DatabaseService
 
 load_dotenv()
 
