@@ -1,0 +1,22 @@
+[tool.black]
+line-length = 89
+include = '\.pyi?$'
+exclude = '''
+(
+  /(
+      \.eggs         # Exclude .eggs directories
+    | \.git          # Exclude .git directories
+    | \.hg           # Exclude .hg directories
+    | \.mypy_cache   # Exclude .mypy_cache directories
+    | \.tox          # Exclude .tox directories
+    | \.venv         # Exclude .venv directories
+    | _build         # Exclude _build directories
+    | buck-out       # Exclude buck-out directories
+    | build          # Exclude build directories
+    | dist           # Exclude dist directories
+  )/
+  | /\.gitignore    # Exclude .gitignore files
+  | \.pre-commit-config\.yaml  # Exclude pre-commit config files
+)
+'''
+target-version = ['py36', 'py37', 'py38', 'py39']
