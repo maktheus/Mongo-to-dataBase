@@ -10,7 +10,7 @@ from Controllers.PayloadControllers.PayloadSeparationController import (
 )
 
 
-class payloadController:
+class MainPayloadController:
     def __init__(self, collections):
         self.collections = collections
 
@@ -18,7 +18,7 @@ class payloadController:
         payloadSeparated = payloadSeparationController.payloadSeparation(
             self.collections
         )
-        payloadWise, payloadHex, payloadKS = payloadParserController.payloadParser(
+        payloadWise, payloadHex, payloadIte = payloadParserController.payloadParser(
             payloadSeparated
         )
-        return payloadWise, payloadHex, payloadKS
+        return payloadWise, payloadHex, payloadIte

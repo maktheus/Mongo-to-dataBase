@@ -13,5 +13,5 @@ class payloadParserController:
         payloadParser = PayloadParseService(self.payloadSeparated)
         payloadWise = payloadParser.payloadWiseParser()
         payloadHex = payloadParser.payloadHexParser()
-        payloadKS = payloadParser.payloadKSParser()
-        return payloadWise, payloadHex, payloadKS
+        payloadIte = payloadParser.payloadIteParser()
+        return payloadWise, payloadHex, payloadIte

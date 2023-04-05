@@ -34,7 +34,7 @@ class PayloadParseService:
 
         return res
 
-    def payloadKSParser(self):
+    def payloadIteParser(self):
         res = []
         for item in self.payload[2]:
             payload = item.get("payload")
