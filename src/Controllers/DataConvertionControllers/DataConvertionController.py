@@ -3,21 +3,22 @@ import sys
 sys.path.append("src")
 
 from Service.DataConversationServices.DataToNumpyService import DataToNumpyService
+from Service.DataConversationServices.DataToModelService import DataToModalService
 
 
-class dataConvertionController:
+class DataConvertionController:
     def __init__(self, data):
         self.data = data
         self.dataConvertionService = DataToNumpyService()
 
     def WiseToNumpy(self):
-        x_matrix, y_matrix, z_matrix = self.dataConvertionService.WiseToNumpy(self.data)
+        x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data)
         return x_matrix, y_matrix, z_matrix
 
     def HexToNumpy(self):
-        listHex = self.dataConvertionService.HexToNumpy(self.data)
+        listHex = DataToModalService.hexWiseParser(self.data)
         return listHex
 
     def IteToNumpy(self):
-        listIte = self.dataConvertionService.IteToNumpy(self.data)
+        listIte = DataToModalService.iteWiseParser(self.data)
         return listIte

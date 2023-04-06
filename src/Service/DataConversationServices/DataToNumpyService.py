@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class DataToNumpyService:
     def WiseToNumpy(x_matrix, y_matrix, z_matrix):
         x_matrixNumpy = np.array(x_matrix)

@@ -22,4 +22,5 @@ class MainPayloadController:
         payloadWise, payloadHex, payloadIte = PayloadParserController.payloadParser(
             payloadSeparated
         )
+
         return payloadWise, payloadHex, payloadIte

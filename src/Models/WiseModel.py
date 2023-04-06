@@ -1,7 +1,3 @@
-# OAVelocity	Peakmg	RMSmg	Kurtosis	CrestFactor	Skewness	Deviation	Peak-to-Peak Displacement	Time
-# 247	1295	916	22	1167	-5	289	23	2023-02-16 2:31:19
-
-
 class WiseModel:
     def __init__(
         OAVelocity,
