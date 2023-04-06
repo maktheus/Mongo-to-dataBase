@@ -1,4 +1,4 @@
-class iteModel:
+class IteModel:
     def __init__(
         temperature,
         frequency,

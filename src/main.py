@@ -4,12 +4,11 @@ from Controllers.PayloadControllers.MainPayloadController import MainPayloadCont
 
 def main():
     databaseController = DataBaseController()
-    collectionData = databaseController.getAllDataFromCollection()
-    
-    # collection = databaseController.getCollectionByName("Wise")
-    # collection = databaseController.getCollectionByName("Hex")
-    # collection = databaseController.getCollectionByName("Ks")
-    # collection = databaseController.getCollectionByName("Ks")
+    #2023-02-16 02:29:31 to 2023-03-03 18:07:36
+    collectionData = databaseController.getAllDataFromCollectionOnPeriod(
+        "2023-02-16 02:29:31", "2023-03-03 18:07:36"
+    )
+
 
     mainPayloadController = MainPayloadController(collectionData)
     treatedPayloadData = mainPayloadController.payloadTreater()

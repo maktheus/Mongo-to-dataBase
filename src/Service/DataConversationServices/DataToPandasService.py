@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class DataToPandasService:
     def WiseToPandas(WiseNumpyData):
         x_matrix, y_matrix, z_matrix = WiseNumpyData
@@ -48,7 +49,6 @@ class DataToPandasService:
 
         return x_df, y_df, z_df
 
-
     def HexToPandas(HexNumpyData):
         output_matrix = HexNumpyData
         df = pd.DataFrame(
@@ -62,7 +62,6 @@ class DataToPandasService:
             ],
         )
         return df
-
 
     def KSToPandas(KSNumpyData):
         output_matrix = KSNumpyData

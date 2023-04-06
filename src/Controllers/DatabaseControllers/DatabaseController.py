@@ -31,6 +31,12 @@ class DataBaseController:
             self.collection, date
         )
         return data
+    
+    def getAllDataFromCollectionOnPeriod(self, startDate, endDate):
+        data = self.dataBaseService.getAllDataFromCollectionOnPeriod(
+            self.collection, startDate, endDate
+        )
+        return data
 
 
 def main():

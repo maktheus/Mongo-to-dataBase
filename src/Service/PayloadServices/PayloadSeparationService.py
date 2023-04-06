@@ -11,7 +11,7 @@ class PayloadSeparationService:
 
         return self.payload
 
-    def dataSeparation(self,payload):
+    def dataSeparation(self, payload):
         payloadWise = []
         payloadHex = []
         payloadIte = []
