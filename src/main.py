@@ -18,16 +18,17 @@ def main():
 
     dataConvertionController = DataConvertionController(treatedPayloadData)
     x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
-    listHex = dataConvertionController.HexToPandas()
-    listIte = dataConvertionController.IteToPandas()
+    pandasHexData = dataConvertionController.HexToPandas()
+    pandasIteData = dataConvertionController.IteToPandas()
+
+    print(pandasHexData)
 
     fileCreationController = FileCreationController()
     fileCreationController.createWiseFile(x_matrix, "x.csv")
     fileCreationController.createWiseFile(y_matrix,"y.csv")
     fileCreationController.createWiseFile(z_matrix,"z.csv")
-    fileCreationController.createHexFile(listHex, "hex.csv")
-    print(listIte)
-    fileCreationController.createIteFile(listIte, "ite.csv")
+    fileCreationController.createHexFile(pandasHexData, "hex.csv")
+    fileCreationController.createIteFile(pandasIteData, "ite.csv")
     
 
 
