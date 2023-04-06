@@ -1,8 +1,3 @@
-import sys
-
-sys.path.append("src")
-
-
 class PayloadSeparationService:
     def __init__(self):
         self.payload = []
@@ -16,7 +11,7 @@ class PayloadSeparationService:
 
         return self.payload
 
-    def dataSeparation(payload):
+    def dataSeparation(self,payload):
         payloadWise = []
         payloadHex = []
         payloadIte = []
