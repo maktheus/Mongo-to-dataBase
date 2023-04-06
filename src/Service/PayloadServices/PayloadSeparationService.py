@@ -4,14 +4,23 @@ sys.path.append("src")
 
 
 class PayloadSeparationService:
-    def __init__(self, collection):
-        self.collection = collection
+    def __init__(self):
+        self.payload = []
 
-    def dataSeparation(self):
+    def getpayload(self, collection):
+        for doc in collection:
+            dataPayload = doc.get("payload")
+            dataTime = doc.get("timestamp")
+            data = {"time": dataTime, "payload": dataPayload}
+            self.payload.append(data)
+
+        return self.payload
+
+    def dataSeparation(payload):
         payloadWise = []
         payloadHex = []
         payloadIte = []
-        for item in self.collection:
+        for item in payload:
             payload = item.get("payload")
             time = item.get("time")
             data = {"time": time, "payload": payload}

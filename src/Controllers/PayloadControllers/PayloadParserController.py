@@ -5,12 +5,9 @@ sys.path.append("src")
 from Service.PayloadServices.PayloadParseService import PayloadParseService
 
 
-class payloadParserController:
-    def __init__(self, payloadSeparated):
-        self.payloadSeparated = payloadSeparated
-
-    def payloadParser(self):
-        payloadParser = PayloadParseService(self.payloadSeparated)
+class PayloadParserController:
+    def payloadParser(payloadSeparated):
+        payloadParser = PayloadParseService(payloadSeparated)
         payloadWise = payloadParser.payloadWiseParser()
         payloadHex = payloadParser.payloadHexParser()
         payloadIte = payloadParser.payloadIteParser()

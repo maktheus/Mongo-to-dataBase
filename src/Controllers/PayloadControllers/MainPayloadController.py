@@ -3,10 +3,10 @@ import sys
 sys.path.append("src")
 
 from Controllers.PayloadControllers.PayloadParserController import (
-    payloadParserController,
+    PayloadParserController,
 )
 from Controllers.PayloadControllers.PayloadSeparationController import (
-    payloadSeparationController,
+    PayloadSeparationController,
 )
 
 
@@ -15,10 +15,11 @@ class MainPayloadController:
         self.collections = collections
 
     def payloadTreater(self):
-        payloadSeparated = payloadSeparationController.payloadSeparation(
+        payloadSeparated = PayloadSeparationController.payloadSeparation(
             self.collections
         )
-        payloadWise, payloadHex, payloadIte = payloadParserController.payloadParser(
+
+        payloadWise, payloadHex, payloadIte = PayloadParserController.payloadParser(
             payloadSeparated
         )
         return payloadWise, payloadHex, payloadIte
