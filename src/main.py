@@ -3,6 +3,7 @@ from Controllers.PayloadControllers.MainPayloadController import MainPayloadCont
 from Controllers.DataConvertionControllers.DataConvertionController import (
     DataConvertionController,
 )
+from Controllers.FileCreationControllers.FileCreationController import FileCreationController
 
 
 def main():
@@ -20,7 +21,14 @@ def main():
     listHex = dataConvertionController.HexToPandas()
     listIte = dataConvertionController.IteToPandas()
 
+    fileCreationController = FileCreationController()
+    fileCreationController.createWiseFile(x_matrix, "x.csv")
+    fileCreationController.createWiseFile(y_matrix,"y.csv")
+    fileCreationController.createWiseFile(z_matrix,"z.csv")
+    fileCreationController.createHexFile(listHex, "hex.csv")
     print(listIte)
+    fileCreationController.createIteFile(listIte, "ite.csv")
+    
 
 
 if __name__ == "__main__":

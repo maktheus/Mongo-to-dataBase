@@ -1,15 +1,8 @@
 class CsvFileCreationService:
-    def __init__(self, file_name, file_path):
-        self.file_name = file_name
-        self.file_path = file_path
-
-    def create_csv_file(self, data):
-        with open(self.file_path + self.file_name, "w") as f:
+    
+    def create_csv_file( data, file_path, file_name):
+        with open(file_path +file_name , "w") as f:
             data.to_csv(f, index=False, header=True)
-
-    def create_csv_file_with_header(self, data, header):
-        with open(self.file_path + self.file_name, "w") as f:
-            data.to_csv(f, index=False, header=header)
 
 
 # def WiseToCsv():

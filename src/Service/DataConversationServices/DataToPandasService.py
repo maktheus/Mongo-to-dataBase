@@ -65,7 +65,6 @@ class DataToPandasService:
 
     def IteToPandas(KSNumpyData):
         output_matrix = KSNumpyData
-        print(output_matrix)
         columns = [
             "temperature",
             "frequency",
@@ -89,6 +88,6 @@ class DataToPandasService:
             "phaseC_tc_config",
             "time",
         ]
-        #df = pd.DataFrame(output_matrix, columns=columns)
+        df = pd.DataFrame(output_matrix, columns=columns)
 
-       # return df
+        return df
