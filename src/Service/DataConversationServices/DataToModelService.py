@@ -10,55 +10,57 @@ class DataToModalService:
         y_matrix = []
         z_matrix = []
         for item in payloadWise:
-            payload = item["payload"]
-            time = item["time"]
-            # se tiver Accelerometer
-            if "Accelerometer" in payload:
-                acc = payload["Accelerometer"]
-                x = acc["X-Axis"]
-                y = acc["Y-Axis"]
-                z = acc["Z-Axis"]
-                wiseModelX = WiseModel(
-                    x["OAVelocity"],
-                    x["Peakmg"],
-                    x["RMSmg"],
-                    x["Kurtosis"],
-                    x["CrestFactor"],
-                    x["Skewness"],
-                    x["Deviation"],
-                    x["Peak-to-Peak Displacement"],
-                    time,
-                )
-                wiseModelY = WiseModel(
-                    y["OAVelocity"],
-                    y["Peakmg"],
-                    y["RMSmg"],
-                    y["Kurtosis"],
-                    y["CrestFactor"],
-                    y["Skewness"],
-                    y["Deviation"],
-                    y["Peak-to-Peak Displacement"],
-                    time,
-                )
-                wiseModelZ = WiseModel(
-                    z["OAVelocity"],
-                    z["Peakmg"],
-                    z["RMSmg"],
-                    z["Kurtosis"],
-                    z["CrestFactor"],
-                    z["Skewness"],
-                    z["Deviation"],
-                    z["Peak-to-Peak Displacement"],
-                    time,
-                )
-                x_matrix.append(wiseModelX)
-                y_matrix.append(wiseModelY)
-                z_matrix.append(wiseModelZ)
+            try: 
+                payload = item["payload"]
+                time = item["time"]
+                # se tiver Accelerometer
+                if "Accelerometer" in payload:
+                    acc = payload["Accelerometer"]
+                    x = acc["X-Axis"]
+                    y = acc["Y-Axis"]
+                    z = acc["Z-Axis"]
+                    wiseModelX = WiseModel(
+                        x["OAVelocity"],
+                        x["Peakmg"],
+                        x["RMSmg"],
+                        x["Kurtosis"],
+                        x["CrestFactor"],
+                        x["Skewness"],
+                        x["Deviation"],
+                        x["Peak-to-Peak Displacement"],
+                        time,
+                    )
+                    wiseModelY = WiseModel(
+                        y["OAVelocity"],
+                        y["Peakmg"],
+                        y["RMSmg"],
+                        y["Kurtosis"],
+                        y["CrestFactor"],
+                        y["Skewness"],
+                        y["Deviation"],
+                        y["Peak-to-Peak Displacement"],
+                        time,
+                    )
+                    wiseModelZ = WiseModel(
+                        z["OAVelocity"],
+                        z["Peakmg"],
+                        z["RMSmg"],
+                        z["Kurtosis"],
+                        z["CrestFactor"],
+                        z["Skewness"],
+                        z["Deviation"],
+                        z["Peak-to-Peak Displacement"],
+                        time,
+                    )
+                    x_matrix.append(wiseModelX)
+                    y_matrix.append(wiseModelY)
+                    z_matrix.append(wiseModelZ)
+            except:
+                pass
 
         return x_matrix, y_matrix, z_matrix
 
     def hexWiseParser(payloadHexParser):
-        # {"InletPressure": 16.93051528930664, "OutletPressure": 1011.0496215820312, "OutletTemperature": 83.23367309570312, "InverterSpeed": 4558.0}', 'timestamp': '2023-02-16 02:30:36'}
         output = []
 
         payloadHexParserData = payloadHexParser[1]
@@ -68,17 +70,20 @@ class DataToModalService:
         for item in payloadHexParserData:
             payload = item.get("payload")
             time = item.get("time")
-
-            # se tiver Accelerometer
-            inletPressure = payload["InletPressure"]
-            outletPressure = payload["OutletPressure"]
-            outletTemperature = payload["OutletTemperature"]
-            inverterSpeed = payload["InverterSpeed"]
-            hexModel = HexModel(
-                inletPressure, outletPressure, outletTemperature, inverterSpeed, time
-            )
-
-            output.append(hexModel)
+            print(payload)
+            try:
+                # se tiver Accelerometer
+                inletPressure = payload["InletPressure"]
+                outletPressure = payload["OutletPressure"]
+                outletTemperature = payload["OutletTemperature"]
+                inverterSpeed = payload["InverterSpeed"]
+                if inletPressure is not None and outletPressure is not None and outletTemperature is not None and inverterSpeed is not None:
+                    hexModel = HexModel(
+                        inletPressure, outletPressure, outletTemperature, inverterSpeed, time
+                    )
+                    output.append(hexModel)
+            except:
+                pass
 
         return output
 
