@@ -42,8 +42,6 @@ class DataBaseController:
 def main():
     dataBaseController = DataBaseController()
     collection = dataBaseController.getAllDataFromCollection()
-    for doc in collection:
-        print(doc)
     dataBaseController.getAllDataFromCollectionFilteredByDate("2021-10-01")
 
 

@@ -86,7 +86,7 @@ class DataToPandasService:
             "phaseC_active",
             "phaseC_reactive",
             "phaseC_tc_config",
-            "time",
+            "Time",
         ]
         df = pd.DataFrame(output_matrix, columns=columns)
 

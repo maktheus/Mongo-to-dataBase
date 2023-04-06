@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # carregar os dados em um dataframe do pandas
 df = pd.read_csv("../saida/hex/payloadHex.csv", index_col="Time")
-print(df)
+
 # gerar gráfico de linha para cada coluna com o valor máximo
 df.max().plot(kind="line")
 plt.title("Valor máximo")

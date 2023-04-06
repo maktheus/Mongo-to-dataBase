@@ -8,5 +8,4 @@ from Service.PayloadServices.PayloadSeparationService import PayloadSeparationSe
 class PayloadSeparationController:
     def payloadSeparation(collection):
         payloadSeparation = PayloadSeparationService()
-        payload = payloadSeparation.getpayload(collection)
-        return payloadSeparation.dataSeparation(payload)
+        return payloadSeparation.dataSeparation(collection)

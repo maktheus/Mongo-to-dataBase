@@ -74,6 +74,7 @@ class DataToNumpyService:
     def IteToNumpy(self, payloadIteParser):
         ite_matrix_data = []
         for doc in payloadIteParser:
+            
             ite_matrix_data.append(
                 [
                     doc.temperature,
@@ -96,7 +97,7 @@ class DataToNumpyService:
                     doc.phaseC_active,
                     doc.phaseC_reactive,
                     doc.phaseC_tc_config,
-                    doc.time,
+                    doc.Time,
                 ]
             )
 

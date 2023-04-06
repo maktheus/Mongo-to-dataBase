@@ -15,12 +15,13 @@ class MainPayloadController:
         self.collections = collections
 
     def payloadTreater(self):
+        print("payloadTreater")
         payloadSeparated = PayloadSeparationController.payloadSeparation(
             self.collections
         )
+        print("payloadSeparated")
 
         payloadWise, payloadHex, payloadIte = PayloadParserController.payloadParser(
             payloadSeparated
         )
-
         return payloadWise, payloadHex, payloadIte

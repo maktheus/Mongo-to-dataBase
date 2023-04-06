@@ -12,7 +12,7 @@ class DataToModalService:
         for item in payloadWise:
             try: 
                 payload = item["payload"]
-                time = item["time"]
+                Time = item["time"]
                 # se tiver Accelerometer
                 if "Accelerometer" in payload:
                     acc = payload["Accelerometer"]
@@ -28,7 +28,7 @@ class DataToModalService:
                         x["Skewness"],
                         x["Deviation"],
                         x["Peak-to-Peak Displacement"],
-                        time,
+                        Time,
                     )
                     wiseModelY = WiseModel(
                         y["OAVelocity"],
@@ -39,7 +39,7 @@ class DataToModalService:
                         y["Skewness"],
                         y["Deviation"],
                         y["Peak-to-Peak Displacement"],
-                        time,
+                        Time,
                     )
                     wiseModelZ = WiseModel(
                         z["OAVelocity"],
@@ -50,7 +50,7 @@ class DataToModalService:
                         z["Skewness"],
                         z["Deviation"],
                         z["Peak-to-Peak Displacement"],
-                        time,
+                        Time,
                     )
                     x_matrix.append(wiseModelX)
                     y_matrix.append(wiseModelY)
@@ -69,8 +69,7 @@ class DataToModalService:
 
         for item in payloadHexParserData:
             payload = item.get("payload")
-            time = item.get("time")
-            print(payload)
+            Time = item.get("time")
             try:
                 # se tiver Accelerometer
                 inletPressure = payload["InletPressure"]
@@ -79,7 +78,7 @@ class DataToModalService:
                 inverterSpeed = payload["InverterSpeed"]
                 if inletPressure is not None and outletPressure is not None and outletTemperature is not None and inverterSpeed is not None:
                     hexModel = HexModel(
-                        inletPressure, outletPressure, outletTemperature, inverterSpeed, time
+                        inletPressure, outletPressure, outletTemperature, inverterSpeed, Time
                     )
                     output.append(hexModel)
             except:
@@ -94,7 +93,7 @@ class DataToModalService:
             # [{'bn': 'F80332060002BD7B', 'bt': 1676514561}, {'n': 'uplink', 'u': 'count', 'v': 1585}, {'n': 'activation_mode', 'vs': 'ABP'}, {'n': 'datarate', 'vs': 'SF12BW125'}, {'n': 'rssi', 'u': 'dBW', 'v': -90}, {'n': 'snr', 'u': 'dB', 'v': 7.8}, {'n': 'model', 'vs': 'ite11li'}, {'n': 'version', 'vs': '1.0.3.0'}, {'n': 'temperature', 'u': 'Cel', 'v': 52.0}, {'n': 'frequency', 'u': 'Hz', 'v': 60.0}, {'n': 'phaseA_voltage', 'u': 'V', 'v': 221.8}, {'n': 'phaseA_current', 'u': 'A', 'v': 3.5}, {'n': 'phaseA_pwr_factor', 'u': '/', 'v': 0.8600000000000001}, {'n': 'phaseA_active', 'u': 'J', 'v': 1362168000.0}, {'n': 'phaseA_reactive', 'u': 'J', 'v': 195624000.0}, {'n': 'phaseA_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseB_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseB_current', 'u': 'A', 'v': 3.6}, {'n': 'phaseB_pwr_factor', 'u': '/', 'v': 0.8799999999999999}, {'n': 'phaseB_active', 'u': 'J', 'v': 1431288000.0}, {'n': 'phaseB_reactive', 'u': 'J', 'v': 159768000.0}, {'n': 'phaseB_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseC_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseC_current', 'u': 'A', 'v': 3.55}, {'n': 'phaseC_pwr_factor', 'u': '/', 'v': 0.8700000000000001}, {'n': 'phaseC_active', 'u': 'J', 'v': 1368000000.0}, {'n': 'phaseC_reactive', 'u': 'J', 'v': 121931999.99999999}, {'n': 'phaseC_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'gateway', 'vs': 'F8033202DF790000'}]
             try:
                 payload = item.get("payload")
-                time = item.get("time")
+                Time = item.get("time")
                 temperatura = payload[8].get("v")
                 frequencia = payload[9].get("v")
                 faseA_tensao = payload[10].get("v")
@@ -139,7 +138,7 @@ class DataToModalService:
                 faseC_ativa,
                 faseC_reativa,
                 faseC_config_tc,
-                time,
+                Time,
             )
             output.append(iteModel)
 

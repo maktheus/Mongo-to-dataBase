@@ -10,25 +10,30 @@ def main():
     databaseController = DataBaseController()
     # 2023-02-16 02:29:31 to 2023-03-03 18:07:36
     # collectionData = databaseController.getAllDataFromCollectionOnPeriod(
-    #     "2023-02-16 02:29:31", "2023-02-16 02:34:42"
+    #     "2023-02-16 02:29:31", "2023-02-16 3:29:31"
     # )
     collectionData = databaseController.getAllDataFromCollection()
+
+    print("collectionData")
 
     mainPayloadController = MainPayloadController(collectionData)
     treatedPayloadData = mainPayloadController.payloadTreater()
 
+    print("treatedPayloadData")
     dataConvertionController = DataConvertionController(treatedPayloadData)
     x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
     pandasHexData = dataConvertionController.HexToPandas()
     pandasIteData = dataConvertionController.IteToPandas()
-
+   
+    print("pandasHexData")
     fullfillDataThatNeverGetService = FullfillDataThatNeverGetService()
     pandasHexData = fullfillDataThatNeverGetService.fullfill(pandasHexData)
     pandasIteData = fullfillDataThatNeverGetService.fullfill(pandasIteData)
     x_matrix = fullfillDataThatNeverGetService.fullfill(x_matrix)
     y_matrix = fullfillDataThatNeverGetService.fullfill(y_matrix)
     z_matrix = fullfillDataThatNeverGetService.fullfill(z_matrix)
-  
+    
+    print("pandasHexData")
 
     fileCreationController = FileCreationController()
     fileCreationController.createWiseFile(x_matrix, "x.csv")
