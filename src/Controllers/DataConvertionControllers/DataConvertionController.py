@@ -4,6 +4,7 @@ sys.path.append("src")
 
 from Service.DataConversationServices.DataToNumpyService import DataToNumpyService
 from Service.DataConversationServices.DataToModelService import DataToModalService
+from Service.DataConversationServices.DataToPandasService import DataToPandasService
 
 
 class DataConvertionController:
@@ -11,14 +12,23 @@ class DataConvertionController:
         self.data = data
         self.dataConvertionService = DataToNumpyService()
 
-    def WiseToNumpy(self):
+    def WiseToPandas(self):
         x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data)
-        return x_matrix, y_matrix, z_matrix
+        numpy_matrix = self.dataConvertionService.WiseToNumpy(
+            x_matrix, y_matrix, z_matrix
+        )
+        pandas_matrix = DataToPandasService.WiseToPandas(numpy_matrix)
+        return pandas_matrix
 
-    def HexToNumpy(self):
+    def HexToPandas(self):
         listHex = DataToModalService.hexWiseParser(self.data)
-        return listHex
+        numpy_hex = self.dataConvertionService.HexToNumpy(listHex)
+        pandas_hex = DataToPandasService.HexToPandas(numpy_hex)
 
-    def IteToNumpy(self):
-        listIte = DataToModalService.iteWiseParser(self.data)
-        return listIte
+        return pandas_hex
+
+    def IteToPandas(self):
+        listIte = DataToModalService.iteModelParser(self.data)
+        numpy_ite = self.dataConvertionService.IteToNumpy(listIte)
+        pandas_ite = DataToPandasService.IteToPandas(numpy_ite)
+        return pandas_ite

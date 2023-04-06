@@ -16,11 +16,11 @@ def main():
     treatedPayloadData = mainPayloadController.payloadTreater()
 
     dataConvertionController = DataConvertionController(treatedPayloadData)
-    x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToNumpy()
-    listHex = dataConvertionController.HexToNumpy()
-    listIte = dataConvertionController.IteToNumpy()
+    x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
+    listHex = dataConvertionController.HexToPandas()
+    listIte = dataConvertionController.IteToPandas()
 
-    print(listHex)
+    print(listIte)
 
 
 if __name__ == "__main__":

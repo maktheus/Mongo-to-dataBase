@@ -89,7 +89,6 @@ class DataToModalService:
             # [{'bn': 'F80332060002BD7B', 'bt': 1676514561}, {'n': 'uplink', 'u': 'count', 'v': 1585}, {'n': 'activation_mode', 'vs': 'ABP'}, {'n': 'datarate', 'vs': 'SF12BW125'}, {'n': 'rssi', 'u': 'dBW', 'v': -90}, {'n': 'snr', 'u': 'dB', 'v': 7.8}, {'n': 'model', 'vs': 'ite11li'}, {'n': 'version', 'vs': '1.0.3.0'}, {'n': 'temperature', 'u': 'Cel', 'v': 52.0}, {'n': 'frequency', 'u': 'Hz', 'v': 60.0}, {'n': 'phaseA_voltage', 'u': 'V', 'v': 221.8}, {'n': 'phaseA_current', 'u': 'A', 'v': 3.5}, {'n': 'phaseA_pwr_factor', 'u': '/', 'v': 0.8600000000000001}, {'n': 'phaseA_active', 'u': 'J', 'v': 1362168000.0}, {'n': 'phaseA_reactive', 'u': 'J', 'v': 195624000.0}, {'n': 'phaseA_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseB_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseB_current', 'u': 'A', 'v': 3.6}, {'n': 'phaseB_pwr_factor', 'u': '/', 'v': 0.8799999999999999}, {'n': 'phaseB_active', 'u': 'J', 'v': 1431288000.0}, {'n': 'phaseB_reactive', 'u': 'J', 'v': 159768000.0}, {'n': 'phaseB_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseC_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseC_current', 'u': 'A', 'v': 3.55}, {'n': 'phaseC_pwr_factor', 'u': '/', 'v': 0.8700000000000001}, {'n': 'phaseC_active', 'u': 'J', 'v': 1368000000.0}, {'n': 'phaseC_reactive', 'u': 'J', 'v': 121931999.99999999}, {'n': 'phaseC_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'gateway', 'vs': 'F8033202DF790000'}]
             try:
                 payload = item.get("payload")
-                print(payload)
                 time = item.get("time")
                 temperatura = payload[8].get("v")
                 frequencia = payload[9].get("v")
@@ -115,27 +114,27 @@ class DataToModalService:
                 pass
 
             iteModel = IteModel(
-                temperatura=temperatura,
-                frequencia=frequencia,
-                faseA_tensao=faseA_tensao,
-                faseA_corrente=faseA_corrente,
-                faseA_fator_potencia=faseA_fator_potencia,
-                faseA_ativa=faseA_ativa,
-                faseA_reativa=faseA_reativa,
-                faseA_config_tc=faseA_config_tc,
-                faseB_tensao=faseB_tensao,
-                faseB_corrente=faseB_corrente,
-                faseB_fator_potencia=faseB_fator_potencia,
-                faseB_ativa=faseB_ativa,
-                faseB_reativa=faseB_reativa,
-                faseB_config_tc=faseB_config_tc,
-                faseC_tensao=faseC_tensao,
-                faseC_corrente=faseC_corrente,
-                faseC_fator_potencia=faseC_fator_potencia,
-                faseC_ativa=faseC_ativa,
-                faseC_reativa=faseC_reativa,
-                faseC_config_tc=faseC_config_tc,
-                time=time,
+                temperatura,
+                frequencia,
+                faseA_tensao,
+                faseA_corrente,
+                faseA_fator_potencia,
+                faseA_ativa,
+                faseA_reativa,
+                faseA_config_tc,
+                faseB_tensao,
+                faseB_corrente,
+                faseB_fator_potencia,
+                faseB_ativa,
+                faseB_reativa,
+                faseB_config_tc,
+                faseC_tensao,
+                faseC_corrente,
+                faseC_fator_potencia,
+                faseC_ativa,
+                faseC_reativa,
+                faseC_config_tc,
+                time,
             )
             output.append(iteModel)
 

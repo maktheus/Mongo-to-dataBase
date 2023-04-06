@@ -1,5 +1,6 @@
 class WiseModel:
     def __init__(
+        self,
         OAVelocity,
         Peakmg,
         RMSmg,

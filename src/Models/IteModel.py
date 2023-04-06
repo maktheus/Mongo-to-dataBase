@@ -1,5 +1,6 @@
 class IteModel:
     def __init__(
+        self,
         temperature,
         frequency,
         phaseA_voltage,
