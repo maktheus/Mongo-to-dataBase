@@ -2,6 +2,7 @@ import subprocess
 import json
 from concurrent.futures import ThreadPoolExecutor
 
+
 class PayloadParseService:
     def __init__(self, payload):
         self.payload = payload
@@ -14,7 +15,7 @@ class PayloadParseService:
         payloadDecodifier = subprocess.run(
             ["src/bin/decoder/main-linux", payloadRaw], stdout=subprocess.PIPE
         )
-        print("payloadDecodifier")
+
         payloadDecodifier = payloadDecodifier.stdout.decode("utf-8")
         payloadDecodifier = json.loads(payloadDecodifier)
         return {"payload": payloadDecodifier, "time": time}
@@ -45,7 +46,7 @@ class PayloadParseService:
         print("payloadIteParser")
         res = []
         for item in self.payload[2]:
-            
+
             payload = item.get("payload")
             time = item.get("time")
             payload = json.loads(payload)

@@ -1,7 +1,4 @@
 class PayloadSeparationService:
-
-    
-
     def dataSeparation(self, payload):
         payloadWise = []
         payloadHex = []

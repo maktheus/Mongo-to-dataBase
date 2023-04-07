@@ -10,7 +10,7 @@ class DataToModalService:
         y_matrix = []
         z_matrix = []
         for item in payloadWise:
-            try: 
+            try:
                 payload = item["payload"]
                 Time = item["time"]
                 # se tiver Accelerometer
@@ -76,9 +76,18 @@ class DataToModalService:
                 outletPressure = payload["OutletPressure"]
                 outletTemperature = payload["OutletTemperature"]
                 inverterSpeed = payload["InverterSpeed"]
-                if inletPressure is not None and outletPressure is not None and outletTemperature is not None and inverterSpeed is not None:
+                if (
+                    inletPressure is not None
+                    and outletPressure is not None
+                    and outletTemperature is not None
+                    and inverterSpeed is not None
+                ):
                     hexModel = HexModel(
-                        inletPressure, outletPressure, outletTemperature, inverterSpeed, Time
+                        inletPressure,
+                        outletPressure,
+                        outletTemperature,
+                        inverterSpeed,
+                        Time,
                     )
                     output.append(hexModel)
             except:
@@ -101,19 +110,16 @@ class DataToModalService:
                 faseA_fator_potencia = payload[12].get("v")
                 faseA_ativa = payload[13].get("v")
                 faseA_reativa = payload[14].get("v")
-                faseA_config_tc = payload[15].get("vs")
                 faseB_tensao = payload[16].get("v")
                 faseB_corrente = payload[17].get("v")
                 faseB_fator_potencia = payload[18].get("v")
                 faseB_ativa = payload[19].get("v")
                 faseB_reativa = payload[20].get("v")
-                faseB_config_tc = payload[21].get("vs")
                 faseC_tensao = payload[22].get("v")
                 faseC_corrente = payload[23].get("v")
                 faseC_fator_potencia = payload[24].get("v")
                 faseC_ativa = payload[25].get("v")
                 faseC_reativa = payload[26].get("v")
-                faseC_config_tc = payload[27].get("vs")
             except IndexError:
                 pass
 
@@ -125,19 +131,16 @@ class DataToModalService:
                 faseA_fator_potencia,
                 faseA_ativa,
                 faseA_reativa,
-                faseA_config_tc,
                 faseB_tensao,
                 faseB_corrente,
                 faseB_fator_potencia,
                 faseB_ativa,
                 faseB_reativa,
-                faseB_config_tc,
                 faseC_tensao,
                 faseC_corrente,
                 faseC_fator_potencia,
                 faseC_ativa,
                 faseC_reativa,
-                faseC_config_tc,
                 Time,
             )
             output.append(iteModel)
