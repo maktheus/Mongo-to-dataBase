@@ -14,10 +14,10 @@ from Service.PandasDataManipulationServices.FullfillDataThatNeverGetService impo
 def main():
     databaseController = DataBaseController()
     # 2023-02-16 02:29:31 to 2023-03-03 18:07:36
-    collectionData = databaseController.getAllDataFromCollectionOnPeriod(
-        "2023-02-16 02:29:31", "2023-02-16 3:29:31"
-    )
-    # collectionData = databaseController.getAllDataFromCollection()
+    # collectionData = databaseController.getAllDataFromCollectionOnPeriod(
+    #     "2023-02-16 02:29:31", "2023-02-16 3:29:31"
+    # )
+    collectionData = databaseController.getAllDataFromCollection()
 
     print("collectionData")
 
