@@ -1,0 +1,7 @@
+[core]
+    autostage = true
+    remote = storage
+['remote "drivewillec"']
+    url = https://drive.google.com/drive/folders/1NTZ4Nbgf13hmxuwRq7R9_OPi-AD1OKeX?usp=sharing
+['remote "storage"']
+    url = gdrive://1NTZ4Nbgf13hmxuwRq7R9_OPi-AD1OKeX
