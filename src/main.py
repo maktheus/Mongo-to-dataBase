@@ -38,7 +38,8 @@ def main():
     fileCreationController.createWiseFile(z_matrix, "z.csv")
     fileCreationController.createHexFile(pandasHexData, "hex.csv")
     fileCreationController.createIteFile(pandasIteData, "ite.csv")
-
+    
+    print("data createad")
     fullfillDataThatNeverGetService = FullfillDataThatNeverGetService()
     pandasHexData = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/hex/hex.csv")
     x_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/wise/x.csv")
