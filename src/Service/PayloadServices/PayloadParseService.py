@@ -13,7 +13,7 @@ class PayloadParseService:
         payload = json.loads(payload)
         payloadRaw = payload[6]["vs"]
         payloadDecodifier = subprocess.run(
-            ["src/bin/decoder/main-linux", payloadRaw], stdout=subprocess.PIPE
+            ["/home/muchoa/willec/Mongo-to-dataBase/src/bin/decoder/main-linux", payloadRaw], stdout=subprocess.PIPE
         )
 
         payloadDecodifier = payloadDecodifier.stdout.decode("utf-8")

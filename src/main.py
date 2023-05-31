@@ -14,17 +14,18 @@ from Service.PandasDataManipulationServices.FullfillDataThatNeverGetService impo
 def main():
     databaseController = DataBaseController()
     # 2023-02-16 02:29:31 to 2023-03-03 18:07:36
-    collectionData = databaseController.getAllDataFromCollectionOnPeriod(
-        "2023-03-07 02:29:31", "2023-04-03 3:29:31"
-    )
-    #collectionData = databaseController.getAllDataFromCollection()
+    # collectionData = databaseController.getAllDataFromCollectionOnPeriod(
+    #     "2023-03-07 02:29:31", "2023-04-03 3:29:31"
+    # )
+    collectionData = databaseController.getAllDataFromCollection()
 
-    print("collectionData")
+    # print("collectionData")
 
     mainPayloadController = MainPayloadController(collectionData)
     treatedPayloadData = mainPayloadController.payloadTreater()
-
     print("treatedPayloadData")
+
+
     dataConvertionController = DataConvertionController(treatedPayloadData)
     x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
     pandasHexData = dataConvertionController.HexToPandas()
@@ -41,11 +42,11 @@ def main():
     
     print("data createad")
     fullfillDataThatNeverGetService = FullfillDataThatNeverGetService()
-    pandasHexData = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/hex/hex.csv")
-    x_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/wise/x.csv")
-    y_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/wise/y.csv")
-    z_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/wise/z.csv")
-    pandasIteData = fullfillDataThatNeverGetService.fullfill("/home/muchoa/code/cetelli/Mongo_to_h5/saida/ite/ite.csv")
+    pandasHexData = fullfillDataThatNeverGetService.fullfill("/home/muchoa/willec/Mongo-to-dataBase/saida/hex/hex.csv")
+    x_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/willec/Mongo-to-dataBase/saida/wise/x.csv")
+    y_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/willec/Mongo-to-dataBase/saida/wise/y.csv")
+    z_matrix = fullfillDataThatNeverGetService.fullfill("/home/muchoa/willec/Mongo-to-dataBase/saida/wise/z.csv")
+    pandasIteData = fullfillDataThatNeverGetService.fullfill("/home/muchoa/willec/Mongo-to-dataBase/saida/ite/ite.csv")
 
     fileCreationController.createWiseFile(x_matrix, "xFullfilled.csv")
     fileCreationController.createWiseFile(y_matrix, "yFullfilled.csv")
