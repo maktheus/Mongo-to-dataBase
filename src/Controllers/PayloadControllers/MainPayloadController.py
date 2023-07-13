@@ -21,7 +21,8 @@ class MainPayloadController:
         )
         print("payloadSeparated")
 
-        payloadWise, payloadHex, payloadIte = PayloadParserController.payloadParser(
+        payloadWise, payloadHex, payloadIte, payloadCompressor = PayloadParserController.payloadParser(
             payloadSeparated
         )
-        return payloadWise, payloadHex, payloadIte
+        print("payloadParsed")
+        return payloadWise, payloadHex, payloadIte, payloadCompressor

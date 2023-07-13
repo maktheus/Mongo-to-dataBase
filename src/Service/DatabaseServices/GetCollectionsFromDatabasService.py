@@ -1,4 +1,5 @@
 import re
+import pandas as pd
 from datetime import datetime, date, time
 
 
@@ -25,3 +26,8 @@ class DatabaseService:
         projection = {"_id": False}
         cursor = collection.find(query, projection)
         return cursor
+    
+    def getAllDataFromCsv(self, path):
+        data = pd.read_csv(path)
+        return data
+

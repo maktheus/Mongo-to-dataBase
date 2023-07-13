@@ -32,3 +32,10 @@ class DataConvertionController:
         numpy_ite = self.dataConvertionService.IteToNumpy(listIte)
         pandas_ite = DataToPandasService.IteToPandas(numpy_ite)
         return pandas_ite
+    
+    def CompressorToPandas(self):
+        #json to pandas
+        pandas_compressor = DataToPandasService.CompressorToPandas(self.data)
+
+        return pandas_compressor
+

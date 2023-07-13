@@ -6,4 +6,7 @@ class CsvFileCreationService:
             os.makedirs(file_path)
 
         with open(file_path + file_name, "w") as f:
-            data.to_csv(f, index=False, header=True)
+            try:
+                data.to_csv(f, index=False, header=True)
+            except:
+                pass

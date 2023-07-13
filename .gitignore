@@ -2,6 +2,8 @@
 
 src/Scripts/Dump
 src/Database/out
+saida
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

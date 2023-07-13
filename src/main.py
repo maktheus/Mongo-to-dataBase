@@ -17,9 +17,10 @@ def main():
     # collectionData = databaseController.getAllDataFromCollectionOnPeriod(
     #     "2023-03-07 02:29:31", "2023-04-03 3:29:31"
     # )
-    collectionData = databaseController.getAllDataFromCollection()
-
-    # print("collectionData")
+    # collectionData = databaseController.getAllDataFromCollection()
+    collectionData = databaseController.getAllDataFromCsv("/home/muchoa/willec/Mongo-to-dataBase/umb_extraction_15062023.csv")
+    print(collectionData)
+    print("collectionData")
 
     mainPayloadController = MainPayloadController(collectionData)
     treatedPayloadData = mainPayloadController.payloadTreater()
@@ -30,6 +31,8 @@ def main():
     x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
     pandasHexData = dataConvertionController.HexToPandas()
     pandasIteData = dataConvertionController.IteToPandas()
+    pandasCompressorData = dataConvertionController.CompressorToPandas()
+
 
     print("pandasHexData")
 
@@ -39,6 +42,7 @@ def main():
     fileCreationController.createWiseFile(z_matrix, "z.csv")
     fileCreationController.createHexFile(pandasHexData, "hex.csv")
     fileCreationController.createIteFile(pandasIteData, "ite.csv")
+    fileCreationController.createCompressorFile(pandasCompressorData, "compressor.csv")
     
     print("data createad")
     fullfillDataThatNeverGetService = FullfillDataThatNeverGetService()

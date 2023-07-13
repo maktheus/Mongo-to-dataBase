@@ -20,3 +20,8 @@ class FileCreationController:
         CsvFileCreationService.create_csv_file(
             pandas_data, "/home/muchoa/willec/Mongo-to-dataBase/saida/ite/", file_name
         )
+
+    def createCompressorFile(self, pandas_data, file_name):
+        CsvFileCreationService.create_csv_file(
+            pandas_data, "/home/muchoa/willec/Mongo-to-dataBase/saida/compressor/", file_name
+        )

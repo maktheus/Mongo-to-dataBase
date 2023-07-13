@@ -1,5 +1,7 @@
 import subprocess
 import json
+import re
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -24,6 +26,8 @@ class PayloadParseService:
         print("payloadWiseParser")
 
         with ThreadPoolExecutor() as executor:
+            if(self.payload[0] == []):
+                return []
             res = list(executor.map(self.parse_item, self.payload[0]))
 
         return res
@@ -52,4 +56,18 @@ class PayloadParseService:
             payload = json.loads(payload)
             res.append({"payload": payload, "time": time})
 
+        return res
+    
+    def payloadCompressorParser(self):
+        print("payloadCompressorParser")
+        pandaDataFrame = self.payload[3]
+        res = []
+        for index, row in pandaDataFrame.iterrows():
+            payload = row["data"]
+            time = datetime.fromtimestamp(int(re.search(r'\((.*?)\)', row["_id"]).group(1)[:8],16))
+            payload = json.loads(payload)
+           
+            res.append({"payload": payload, "time": time})
+
+        
         return res

@@ -19,8 +19,12 @@ MONGO_COLLECTION = os.getenv("MONGO_COLLECTION")
 
 class DataBaseController:
     def __init__(self):
-        self.collection = ConnectToMongoDataBase(MONGO_URL, MONGO_DB, MONGO_COLLECTION)
-        self.dataBaseService = DatabaseService()
+        try:
+            self.dataBaseService = DatabaseService()
+            self.collection = ConnectToMongoDataBase(MONGO_URL, MONGO_DB, MONGO_COLLECTION)
+        except Exception as e:
+            print("Erro ao conectar com o banco de dados")
+            print(e)
 
     def getAllDataFromCollection(self):
         data = self.dataBaseService.getAllDataFromCollection(self.collection)
@@ -36,6 +40,10 @@ class DataBaseController:
         data = self.dataBaseService.getAllDataFromCollectionOnPeriod(
             self.collection, startDate, endDate
         )
+        return data
+
+    def getAllDataFromCsv(self, path):
+        data = self.dataBaseService.getAllDataFromCsv(path)
         return data
 
 
