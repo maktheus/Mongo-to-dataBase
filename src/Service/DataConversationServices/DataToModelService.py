@@ -12,7 +12,7 @@ class DataToModalService:
 
     def wiseModelParser(payloadWiseParser):
         print("Wise Model Parser")
-        payloadWise = payloadWiseParser[0]
+        payloadWise = payloadWiseParser
         x_matrix = []
         y_matrix = []
         z_matrix = []

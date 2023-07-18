@@ -16,7 +16,25 @@ class DataConvertionController:
 
     def WiseToPandas(self):
         print(" ==================================== wise to pandas controller ==================================== ")
-        x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data)
+        x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data[0])
+        numpy_matrix = self.dataConvertionService.WiseToNumpy(
+            x_matrix, y_matrix, z_matrix
+        )
+        pandas_matrix = DataToPandasService.WiseToPandas(numpy_matrix)
+        return pandas_matrix
+
+    def WiseToPandasMotor(self):
+        print(" ==================================== wise to pandas controller ==================================== ")
+        x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data[1])
+        numpy_matrix = self.dataConvertionService.WiseToNumpy(
+            x_matrix, y_matrix, z_matrix
+        )
+        pandas_matrix = DataToPandasService.WiseToPandas(numpy_matrix)
+        return pandas_matrix
+    
+    def WiseToPandasComp(self):
+        print(" ==================================== wise to pandas controller ==================================== ")
+        x_matrix, y_matrix, z_matrix = DataToModalService.wiseModelParser(self.data[2])
         numpy_matrix = self.dataConvertionService.WiseToNumpy(
             x_matrix, y_matrix, z_matrix
         )

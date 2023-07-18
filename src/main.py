@@ -58,6 +58,9 @@ def main():
         print("==================================== 🚀 data convertion 🚀 ==================================== ")
         dataConvertionController = DataConvertionController(treatedPayloadData)
         x_matrix, y_matrix, z_matrix = dataConvertionController.WiseToPandas()
+        x_matrixComp, y_matrixComp, z_matrixComp = dataConvertionController.WiseToPandasComp()
+        x_matrixMotor, y_matrixMotor, z_matrixMotor = dataConvertionController.WiseToPandasMotor()
+
         pandasHexData = dataConvertionController.HexToPandas()
         pandasIteData = dataConvertionController.IteToPandas()
         pandasCompressorData = dataConvertionController.CompressorToPandas()
@@ -76,13 +79,13 @@ def main():
         fileCreationController.createWiseFile(y_matrix, "y.csv")
         fileCreationController.createWiseFile(z_matrix, "z.csv")
 
-        # fileCreationController.createWiseFile(x_matrix, "x.csv")
-        # fileCreationController.createWiseFile(y_matrix, "y.csv")
-        # fileCreationController.createWiseFile(z_matrix, "z.csv")
+        fileCreationController.createWiseFileMotor(x_matrixMotor, "xMotor.csv")
+        fileCreationController.createWiseFileMotor(y_matrixMotor, "yMotor.csv")
+        fileCreationController.createWiseFileMotor(z_matrixMotor, "zMotor.csv")
 
-        # fileCreationController.createWiseFile(x_matrix, "x.csv")
-        # fileCreationController.createWiseFile(y_matrix, "y.csv")
-        # fileCreationController.createWiseFile(z_matrix, "z.csv")
+        fileCreationController.createWiseFileComp(x_matrixComp, "xComp.csv")
+        fileCreationController.createWiseFileComp(y_matrixComp, "yComp.csv")
+        fileCreationController.createWiseFileComp(z_matrixComp, "zComp.csv")
 
 
         fileCreationController.createHexFile(pandasHexData, "hex.csv")

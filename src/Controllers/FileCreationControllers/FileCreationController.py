@@ -19,6 +19,24 @@ class FileCreationController:
         CsvFileCreationService.create_csv_file(
             pandas_data, self.presentDirectory+"/saida/bombaDePressao/wise/", file_name
         )
+    
+    def createWiseFileMotor(self, pandas_data, file_name):
+        print("create Wise File Motor")
+        if(pandas_data is None):
+            print("pandas_data is None ")
+            return
+        CsvFileCreationService.create_csv_file(
+            pandas_data, self.presentDirectory+"/saida/bombaDePressao/wiseMotor/", file_name
+        )
+    
+    def createWiseFileComp(self, pandas_data, file_name):
+        print("create Wise File Comp")
+        if(pandas_data is None):
+            print("pandas_data is None ")
+            return
+        CsvFileCreationService.create_csv_file(
+            pandas_data, self.presentDirectory+"/saida/compressor/wiseComp/", file_name
+        )
 
     def createHexFile(self, pandas_data, file_name):
         print("create Hex File")
@@ -48,5 +66,5 @@ class FileCreationController:
             print("pandas_data is None ")
             return
         CsvFileCreationService.create_csv_file(
-            pandas_data, self.presentDirectory+"/saida/compressor/", file_name
+            pandas_data, self.presentDirectory+"/saida/compressor/UMB", file_name
         )
