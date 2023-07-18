@@ -1,8 +1,10 @@
 .env
 
-src/Scripts/Dump
-src/Database/out
-saida
+src/Scripts/Dump/
+src/Database/out/
+saida/compressor
+saida/hex
+*.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -17,7 +19,6 @@ dist/
 build/
 *.egg-info/
 
-saida
 
 # Installer logs
 pip-log.txt

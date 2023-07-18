@@ -45,6 +45,12 @@ class DataBaseController:
     def getAllDataFromCsv(self, path):
         data = self.dataBaseService.getAllDataFromCsv(path)
         return data
+    
+    def getAllDataFromAllCsvs(self, path):
+        print("getAllDataFromAllCsvs")
+        data = self.dataBaseService.getAllDataFromAllCsvs(path)
+        return data
+        
 
 
 def main():

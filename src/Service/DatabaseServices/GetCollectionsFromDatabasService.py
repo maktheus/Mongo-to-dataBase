@@ -1,5 +1,7 @@
 import re
 import pandas as pd
+import os
+
 from datetime import datetime, date, time
 
 
@@ -31,3 +33,14 @@ class DatabaseService:
         data = pd.read_csv(path)
         return data
 
+    def getAllDataFromAllCsvs(self,path):
+        all_data = []
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                print(file)
+                if file.endswith(".csv"):
+                    file_path = os.path.join(root, file)
+                    data = self.getAllDataFromCsv(file_path)
+                    all_data.append(data)
+        combined_data = pd.concat(all_data, ignore_index=True)
+        return combined_data

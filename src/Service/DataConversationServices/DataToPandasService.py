@@ -1,16 +1,11 @@
 import pandas as pd
-
+import concurrent.futures
 
 class DataToPandasService:
     def WiseToPandas(WiseNumpyData):
-        print("WiseToPandas")
-        print(WiseNumpyData[0])
-        
-        if WiseNumpyData is None or WiseNumpyData[0] == []:
-            return None
+        print("Wise To Pandas")
+       
         x_matrix, y_matrix, z_matrix = WiseNumpyData
-        if x_matrix is None or x_matrix == []:
-            return None
         
         try:
             x_df = pd.DataFrame(
@@ -65,8 +60,7 @@ class DataToPandasService:
         return x_df, y_df, z_df
 
     def HexToPandas(HexNumpyData):
-        if HexNumpyData is None or HexNumpyData == []:
-            return None
+        print("Hex To Pandas Service")
         output_matrix = HexNumpyData
         try:
             df = pd.DataFrame(
@@ -79,15 +73,17 @@ class DataToPandasService:
                     "Time",
                 ],
             )
-            return df
+            print(df)
+            return df    
         except ValueError:
             print("ValueError")
             print(output_matrix)
             return None
         
     def IteToPandas(KSNumpyData):
-        if KSNumpyData is None or KSNumpyData == []:
-            return None
+        print("Ite To Pandas")
+        
+        
         output_matrix = KSNumpyData
         try:
             columns = [
@@ -118,19 +114,36 @@ class DataToPandasService:
         return df
     
     def CompressorToPandas(CompressorNumpyData):
+
         print ("CompressorToPandas")
-        
         output_matrix = CompressorNumpyData[3]
         if CompressorNumpyData is None or CompressorNumpyData == []:
             return None
-        try:
-           
-            df = pd.json_normalize(output_matrix)
 
-                
+        def json_to_pandas(matrix_block):
+            try:
+                print("Json to pandas")
+                dfs = [pd.json_normalize(matrix) for matrix in matrix_block]
+                df_block = pd.concat(dfs)
+                return df_block
+            except ValueError:
+                print("ValueError")
+                return None
 
-        except ValueError:
-            print("ValueError")
-            return None
-        print(df)
+        # Dividir output_matrix em blocos de tamanho 10
+        matrix_blocks = [output_matrix[i:i+100] for i in range(0, len(output_matrix), 100)]
+        
+        # Criando um pool de threads
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            # Executando json_to_pandas em várias threads
+            df_blocks = list(executor.map(json_to_pandas, matrix_blocks))
+        
+        if df_blocks is None or df_blocks == []:
+            return None 
+        
+        # Combine todos os dataframes resultantes
+        
+        df = pd.concat(df_blocks)
+        
+        print("data to pandas compressor")
         return df

@@ -1,10 +1,17 @@
+import traceback
+import json
 from Models.HexModel import HexModel
 from Models.WiseModel import WiseModel
 from Models.IteModel import IteModel
 
 
 class DataToModalService:
+    def __init__(self):
+        print("Data To Modal Service")
+        pass
+
     def wiseModelParser(payloadWiseParser):
+        print("Wise Model Parser")
         payloadWise = payloadWiseParser[0]
         x_matrix = []
         y_matrix = []
@@ -61,21 +68,27 @@ class DataToModalService:
         return x_matrix, y_matrix, z_matrix
 
     def hexWiseParser(payloadHexParser):
+        # payloadWiseExtraction, payloadWiseMotor, payloadWiseComp ,payloadHex, payloadIte, payloadUmb
+        print("Hex Wise Parser")
         output = []
 
-        payloadHexParserData = payloadHexParser[1]
+        payloadHexParserData = payloadHexParser[3]
+
         if payloadHexParserData == None:
+            print("payloadHexParserData is None")
             return None
 
         for item in payloadHexParserData:
-            payload = item.get("payload")
+  
+            payload = item.get("payload")[1].get("properties")
             Time = item.get("time")
             try:
                 # se tiver Accelerometer
-                inletPressure = payload["InletPressure"]
-                outletPressure = payload["OutletPressure"]
-                outletTemperature = payload["OutletTemperature"]
-                inverterSpeed = payload["InverterSpeed"]
+                
+                inletPressure = payload[0].get("value")
+                outletPressure = payload[1].get("value")
+                outletTemperature = payload[9].get("value")
+                inverterSpeed = payload[26].get("value")
                 if (
                     inletPressure is not None
                     and outletPressure is not None
@@ -90,16 +103,23 @@ class DataToModalService:
                         Time,
                     )
                     output.append(hexModel)
-            except:
+            except Exception as e:
+                print("Error in Hex Wise Parser")
+                print("Error:",e)
+                print("Traceback:",traceback.print_exc())
                 pass
 
         return output
 
     def iteModelParser(payloadIteParser):
-        # {"n": "temperature", "u": "Cel", "v": 52.0}, {"n": "frequency", "u": "Hz", "v": 60.0}, {"n": "phaseA_voltage", "u": "V", "v": 221.5}, {"n": "phaseA_current", "u": "A", "v": 3.5}, {"n": "phaseA_pwr_factor", "u": "/", "v": 0.87000000000000011}, {"n": "phaseA_active", "u": "J", "v": 1362168000.0}, {"n": "phaseA_reactive", "u": "J", "v": 195624000.0}, {"n": "phaseA_tc_config", "vs": "POWCT-T16-150-333"}, {"n": "phaseB_voltage", "u": "V", "v": 221.09999999999999}, {"n": "phaseB_current", "u": "A", "v": 3.6000000000000001}, {"n": "phaseB_pwr_factor", "u": "/", "v": 0.87000000000000011}, {"n": "phaseB_active", "u": "J", "v": 1431288000.0}, {"n": "phaseB_reactive", "u": "J", "v": 159768000.0}, {"n": "phaseB_tc_config", "vs": "POWCT-T16-150-333"}, {"n": "phaseC_voltage", "u": "V", "v": 221.0}, {"n": "phaseC_current", "u": "A", "v": 3.5499999999999998}, {"n": "phaseC_pwr_factor", "u": "/", "v": 0.87000000000000011}, {"n": "phaseC_active", "u": "J", "v": 1368000000.0}, {"n": "phaseC_reactive", "u": "J", "v": 121931999.99999999}, {"n": "phaseC_tc_config", "vs": "POWCT-T16-150-333"}, {"n": "gateway", "vs": "F8033202DF790000"}]', 'timestamp': '2023-02-16 02:31:37'}
+
+        print("Ite Model Parser")
         output = []
-        for item in payloadIteParser[2]:
-            # [{'bn': 'F80332060002BD7B', 'bt': 1676514561}, {'n': 'uplink', 'u': 'count', 'v': 1585}, {'n': 'activation_mode', 'vs': 'ABP'}, {'n': 'datarate', 'vs': 'SF12BW125'}, {'n': 'rssi', 'u': 'dBW', 'v': -90}, {'n': 'snr', 'u': 'dB', 'v': 7.8}, {'n': 'model', 'vs': 'ite11li'}, {'n': 'version', 'vs': '1.0.3.0'}, {'n': 'temperature', 'u': 'Cel', 'v': 52.0}, {'n': 'frequency', 'u': 'Hz', 'v': 60.0}, {'n': 'phaseA_voltage', 'u': 'V', 'v': 221.8}, {'n': 'phaseA_current', 'u': 'A', 'v': 3.5}, {'n': 'phaseA_pwr_factor', 'u': '/', 'v': 0.8600000000000001}, {'n': 'phaseA_active', 'u': 'J', 'v': 1362168000.0}, {'n': 'phaseA_reactive', 'u': 'J', 'v': 195624000.0}, {'n': 'phaseA_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseB_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseB_current', 'u': 'A', 'v': 3.6}, {'n': 'phaseB_pwr_factor', 'u': '/', 'v': 0.8799999999999999}, {'n': 'phaseB_active', 'u': 'J', 'v': 1431288000.0}, {'n': 'phaseB_reactive', 'u': 'J', 'v': 159768000.0}, {'n': 'phaseB_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'phaseC_voltage', 'u': 'V', 'v': 221.3}, {'n': 'phaseC_current', 'u': 'A', 'v': 3.55}, {'n': 'phaseC_pwr_factor', 'u': '/', 'v': 0.8700000000000001}, {'n': 'phaseC_active', 'u': 'J', 'v': 1368000000.0}, {'n': 'phaseC_reactive', 'u': 'J', 'v': 121931999.99999999}, {'n': 'phaseC_tc_config', 'vs': 'POWCT-T16-150-333'}, {'n': 'gateway', 'vs': 'F8033202DF790000'}]
+        #  payloadWiseExtraction, payloadWiseMotor, payloadWiseComp ,payloadHex, payloadIte, payloadUmb
+        if(payloadIteParser == []):
+            return []
+
+        for item in payloadIteParser[4]:
             try:
                 payload = item.get("payload")
                 Time = item.get("time")
@@ -121,6 +141,7 @@ class DataToModalService:
                 faseC_ativa = payload[25].get("v")
                 faseC_reativa = payload[26].get("v")
             except IndexError:
+                print("IndexError in Ite Model Parser")
                 pass
 
             iteModel = IteModel(

@@ -15,14 +15,17 @@ class MainPayloadController:
         self.collections = collections
 
     def payloadTreater(self):
-        print("payloadTreater")
+        print("============================== Payload Treater Controller =============================")
+        print("Payload Separation")
         payloadSeparated = PayloadSeparationController.payloadSeparation(
             self.collections
         )
-        print("payloadSeparated")
 
-        payloadWise, payloadHex, payloadIte, payloadCompressor = PayloadParserController.payloadParser(
+        print("Payload Parser")
+
+        payloadWiseExtraction, payloadWiseMotor, payloadWiseComp ,payloadHex, payloadIte, payloadUmb = PayloadParserController.payloadParser(
             payloadSeparated
         )
-        print("payloadParsed")
-        return payloadWise, payloadHex, payloadIte, payloadCompressor
+
+        return payloadWiseExtraction, payloadWiseMotor, payloadWiseComp ,payloadHex, payloadIte, payloadUmb
+
